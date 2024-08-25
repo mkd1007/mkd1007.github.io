@@ -9,7 +9,8 @@
     <title>Mahmoud Darwich - Personal Webpage</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
         /* General Styles */
@@ -58,6 +59,34 @@
             transform: scale(1.05);
         }
 
+        /* Navigation Tabs */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #34495e;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        nav a {
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        nav a i {
+            margin-right: 8px;
+        }
+        nav a:hover, nav a.active {
+            background-color: #1abc9c;
+            color: white;
+        }
+
         /* Section Header Styles */
         h2 {
             color: #2980b9;
@@ -79,6 +108,9 @@
             header p {
                 font-size: 1.2em;
             }
+            nav a {
+                font-size: 0.9em;
+            }
             h2 {
                 font-size: 2em;
             }
@@ -98,6 +130,13 @@
             header p {
                 font-size: 1em;
             }
+            nav {
+                flex-direction: column;
+            }
+            nav a {
+                margin: 5px 0;
+                font-size: 1em;
+            }
             h2 {
                 font-size: 1.8em;
             }
@@ -115,9 +154,68 @@
             color: white;
             font-size: 1em;
         }
+        footer i {
+            margin: 0 10px;
+            color: #1abc9c;
+            transition: color 0.3s ease;
+        }
+        footer i:hover {
+            color: white;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Spinner */
+        #loadingSpinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 10px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 10px solid #3498db;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            z-index: 9999;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Smooth scrolling for internal links
+            var tabs = document.querySelectorAll("nav a");
+
+            tabs.forEach(function(tab) {
+                tab.addEventListener("click", function() {
+                    tabs.forEach(function(item) {
+                        item.classList.remove("active");
+                    });
+                    this.classList.add("active");
+                });
+            });
+
+            // Show loading spinner on page load
+            document.getElementById("loadingSpinner").style.display = "block";
+            window.addEventListener("load", function() {
+                document.getElementById("loadingSpinner").style.display = "none";
+            });
+        });
+    </script>
+
 </head>
 <body>
+
+<div id="loadingSpinner"></div>
 
 <header>
     <h1>Mahmoud Darwich, PhD</h1>
@@ -127,41 +225,41 @@
 <div class="container mt-5">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true">About Me</a>
+            <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true"><i class="fas fa-user"></i> About Me</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="research-tab" data-toggle="tab" href="#research" role="tab" aria-controls="research" aria-selected="false">Research</a>
+            <a class="nav-link" id="research-tab" data-toggle="tab" href="#research" role="tab" aria-controls="research" aria-selected="false"><i class="fas fa-flask"></i> Research</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="publications-tab" data-toggle="tab" href="#publications" role="tab" aria-controls="publications" aria-selected="false">Publications</a>
+            <a class="nav-link" id="publications-tab" data-toggle="tab" href="#publications" role="tab" aria-controls="publications" aria-selected="false"><i class="fas fa-book"></i> Publications</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="courses-tab" data-toggle="tab" href="#courses" role="tab" aria-controls="courses" aria-selected="false">Courses</a>
+            <a class="nav-link" id="courses-tab" data-toggle="tab" href="#courses" role="tab" aria-controls="courses" aria-selected="false"><i class="fas fa-graduation-cap"></i> Courses</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="experience-tab" data-toggle="tab" href="#experience" role="tab" aria-controls="experience" aria-selected="false">Experience</a>
+            <a class="nav-link" id="experience-tab" data-toggle="tab" href="#experience" role="tab" aria-controls="experience" aria-selected="false"><i class="fas fa-briefcase"></i> Experience</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="education-tab" data-toggle="tab" href="#education" role="tab" aria-controls="education" aria-selected="false">Education</a>
+            <a class="nav-link" id="education-tab" data-toggle="tab" href="#education" role="tab" aria-controls="education" aria-selected="false"><i class="fas fa-university"></i> Education</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="skills-tab" data-toggle="tab" href="#skills" role="tab" aria-controls="skills" aria-selected="false">Skills</a>
+            <a class="nav-link" id="skills-tab" data-toggle="tab" href="#skills" role="tab" aria-controls="skills" aria-selected="false"><i class="fas fa-code"></i> Skills</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="scholarly-tab" data-toggle="tab" href="#scholarly" role="tab" aria-controls="scholarly" aria-selected="false">Scholarly Activities</a>
+            <a class="nav-link" id="scholarly-tab" data-toggle="tab" href="#scholarly" role="tab" aria-controls="scholarly" aria-selected="false"><i class="fas fa-lightbulb"></i> Scholarly Activities</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="service-tab" data-toggle="tab" href="#service" role="tab" aria-controls="service" aria-selected="false">Service</a>
+            <a class="nav-link" id="service-tab" data-toggle="tab" href="#service" role="tab" aria-controls="service" aria-selected="false"><i class="fas fa-handshake"></i> Service</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-envelope"></i> Contact</a>
         </li>
     </ul>
 
     <div class="tab-content mt-3" id="myTabContent">
         <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
             <h2>About Me</h2>
-            <img src="https://mkd1007.github.io/Mahmoud1.jpg"  alt="Mahmoud Darwich" class="profile-pic">
+            <img src="https://mkd1007.github.io/mahmoud.png" alt="Mahmoud Darwich" class="profile-pic">
             <p>I am an Assistant Professor of Computer Science at the University of Mount Union, Ohio. My teaching experience spans a wide range of computer science courses, both online and in-person, at several institutions. I hold a PhD in Computer Engineering from the University of Louisiana at Lafayette. My research interests include video streaming optimization, cloud computing, Internet-of-Things, and machine learning.</p>
         </div>
         <div class="tab-pane fade" id="research" role="tabpanel" aria-labelledby="research-tab">
@@ -187,12 +285,11 @@
             </ol>
             <h3>Conference Papers</h3>
             <ol>
-                <li> Khalil, K., Mohaidat, Darwich, M., T., Kumar, A., Bayoumi, M. Efficient Deep Learning Approach for Breast Cancer Detection. 2024 IEEE International Conference on Omni-layer Intelligent Systems (COINS), 2024.</li>
+                <li>Khalil, K., Mohaidat, Darwich, M., T., Kumar, A., Bayoumi, M. Efficient Deep Learning Approach for Breast Cancer Detection. 2024 IEEE International Conference on Omni-layer Intelligent Systems (COINS), 2024.</li>
                 <li>Khalil, K., Mohaidat, Darwich, M.,  T., Kumar, A., Bayoumi, M. Efficient Hardware Implementation of Artificial Neural Networks on FPGA. 2024 IEEE 6th International Conference on AI Circuits and Systems (AICAS), 2024.</li>
                 <li>K. Khalil, T. Mohaidat, M. Darwich, A. Kumar and M. Bayoumi, "An Efficient Hardware Design of CoAP Protocol for The Internet of Things," 2024 IEEE 17th Dallas Circuits and Systems Conference (DCAS), Richardson, TX, USA, 2024, pp. 1-5, DOI: 10.1109/DCAS61159.2024.10539896.</li>
                 <li>Darwich, M., Kasem Khalil and M. Bayoumi, "Smart Streaming: Deep Learning Applications in Video Streaming Optimization," SoutheastCon 2024, Atlanta, GA, USA, 2024, pp. 22-27, DOI: 10.1109/SoutheastCon52093.2024.10500209.</li>
                 <li>Darwich, M., Kasem Khalil, Yasser Ismail, and Magdy Bayoumi. "Optimizing QoE in IoT-Based Video Streaming through Deep Learning Algorithms," 2024 International Conference on Artificial Intelligence in Information and Communication (ICAIIC), Osaka, Japan, 2024, pp. 052-057, DOI: 10.1109/ICAIIC60209.2024.10463417.</li>
-                <li>Darwich, M., Kasem Khalil, Yasser Ismail, and Magdy Bayoumi. "Deep Learning-Driven Video Summarization on the Cloud: A Pathway to Efficient Storage and Quick Access." In 2023 IEEE 16th International Symposium on Embedded Multicore/Many-core Systems-on-Chip (MCSoC), pp. 360-365. IEEE, 2023.</li>
                 <li>Darwich, M., Kasem Khalil, and Magdy Bayoumi. "Optimizing Video Streaming Costs in the Cloud: A CNN Approach." In 2023 International Conference on Information Technology and Computing (ICITCOM), pp. 125-130. IEEE, 2023.</li>
                 <li>Darwich, M., Kasem Khalil, and Magdy Bayoumi. "Enhancing Video Storage Efficiency in the Cloud: Machine Learning-Driven Optimization Strategies." In 2023 International Conference on Information Technology and Computing (ICITCOM), pp. 119-124. IEEE, 2023.</li>
                 <li>Darwich, M., and Magdy Bayoumi. "LSTM Network Assisted Content Caching at the Edge for Video on Demand." In 2023 IEEE 5th International Conference on Cybernetics, Cognition and Machine Learning Applications (ICCCMLA), pp. 493-496. IEEE, 2023.</li>
@@ -202,8 +299,8 @@
                 <li>Darwich, M., Kasem Khalil, Yasser Ismail, and Magdy Bayoumi. "Adaptive Video Streaming: An AI-Driven Approach Leveraging Cloud and Edge Computing." In 2023 IEEE International Conference on Artificial Intelligence, Blockchain, and Internet of Things (AIBThings), pp. 1-5. IEEE, 2023.</li>
                 <li>Darwich, M., Kasem Khalil, Yasser Ismail, and Magdy Bayoumi. "Predictive Storage Management for Cloud-Based Video Streaming Using ML ARIMA Model." In 2023 IEEE 66th International Midwest Symposium on Circuits and Systems (MWSCAS), pp. 274-278. IEEE, 2023.</li>
                 <li>Darwich, M., Kasem Khalil, Yasser Ismail, and Magdy Bayoumi. "Enhancing cloud-based video streaming efficiency using neural networks." In 2023 IEEE International Conference on Omni-layer Intelligent Systems (COINS), pp. 1-5. IEEE, 2023.</li>
-                <li>Darwich M., (2022). Machine Learning Technique Predicting Video Streaming Views to Reduce Cost of Cloud Services. 2022 IEEE 8thVirtual World Forum on Internet of Things, 10.1109/WF-IoT54382.2022.10152250.</li>
-                <li>Darwich, M., Ismail, Y., Darwich, T., & Bayoumi, M. (2021). Improving Hierarchy Storage for Video Streaming in Cloud. 2021 IEEE 7thVirtual World Forum on Internet of Things.</li>
+                <li>Darwich M., (2022). Machine Learning Technique Predicting Video Streaming Views to Reduce Cost of Cloud Services. 2022 IEEE 8th Virtual World Forum on Internet of Things, 10.1109/WF-IoT54382.2022.10152250.</li>
+                <li>Darwich, M., Ismail, Y., Darwich, T., & Bayoumi, M. (2021). Improving Hierarchy Storage for Video Streaming in Cloud. 2021 IEEE 7th Virtual World Forum on Internet of Things.</li>
                 <li>Darwich, M., Ismail, Y., Darwich, T., & Bayoumi, M. (2020). Cost-Efficient Storage for On-Demand Video Streaming on Cloud. 2020 IEEE 6th World Forum on Internet of Things (WF-IoT).</li>
                 <li>Darwich, M., Beyazit, E., Salehi, M. A., & Bayoumi, M. (2017). Cost-Efficient Repository Management for Cloud-Based On-demand Video Streaming. 2017 5th IEEE International Conference on Mobile Cloud Computing, Services, and Engineering (MobileCloud), 39–44.</li>
                 <li>Darwich, M., Abdelgawad, A., & Bayoumi, M. (2016). A Survey on the power and robustness of FinFET SRAM. 2016 IEEE 59th International Midwest Symposium on Circuits and Systems (MWSCAS), 1–4.</li>
@@ -319,6 +416,11 @@
 
 <footer>
     <p>&copy; 2024 Mahmoud Darwich. All rights reserved.</p>
+    <p>
+        <a href="https://www.linkedin.com/in/mahmouddarwich/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/mkd1007" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:darwicma[at]mountunion.edu"><i class="fas fa-envelope"></i></a>
+    </p>
 </footer>
 
 <!-- Bootstrap JS and dependencies -->
